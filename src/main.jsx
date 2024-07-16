@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import Register from './pages/Register.jsx'
 import Login from './pages/Login.jsx'
-import AddAnnouncement from './components/AddAnnouncement.jsx'
 import Announcement from './pages/Announcement.jsx'
 import ViewAnnouncement from './pages/ViewAnnouncement.jsx'
 import { Provider } from 'react-redux'
@@ -16,6 +15,17 @@ import UniversalChat from './pages/UniversalChat.jsx'
 import Notes from './pages/Notes.jsx'
 import StudentProfile from './pages/StudentProfile.jsx'
 import TeacherProfile from './pages/TeacherProfile.jsx'
+import Test from './pages/Test.jsx'
+import RegisterTeacher from './pages/RegisterTeacher.jsx'
+import AdminDashBoard from './pages/AdminDashBoard.jsx'
+import FilterStudents from './pages/FilterStudents.jsx'
+import AddResult from './pages/AddResult.jsx'
+import StudentProfileUpdate from './pages/StudentProfileUpdate.jsx'
+import TeacherProfileUpdate from './pages/TeacherProfileUpdate.jsx'
+import Feedback from './components/FeedBack.jsx'
+import SubjectNotes from './pages/SubjectNotes.jsx'
+import ChapterNotes from './pages/ChapterNotes.jsx'
+import ChangePassword from './pages/ChangePassword.jsx'
 
 
 const router = createBrowserRouter([
@@ -28,6 +38,10 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
+        path: '/test',
+        element: <Test />
+      },
+      {
         path: '/login',
         element: <Login />
       },
@@ -35,30 +49,22 @@ const router = createBrowserRouter([
         path: '/register',
         element: <Register />
       },
-      // {
-      //   path: '/student-home',
-      //   element: <StudentHome />
-      // },
       {
         path: '/student-profile',
         element: <StudentProfile />
       },
-      // {
-      //   path: '/student-profile/update',
-      //   element: <StudentProfileUpdate />
-      // },
-      // {
-      //   path: '/teacher-home',
-      //   element: <TeacherHome />
-      // },
+      {
+        path: '/student-profile/update',
+        element: <StudentProfileUpdate />
+      },
       {
         path: '/teacher-profile',
         element: <TeacherProfile />
       },
-      // {
-      //   path: '/teacher-profile/update/:id',
-      //   element: <TeacherProfileUpdate />
-      // },
+      {
+        path: '/teacher-profile/update/',
+        element: <TeacherProfileUpdate />
+      },
       {
         path: '/announcement',
         element: <Announcement />
@@ -71,34 +77,34 @@ const router = createBrowserRouter([
         path: '/notes',
         element: <Notes />
       },
-      // {
-      //   path: '/notes/:grade',
-      //   element: <GradeNotes />
-      // },
-      // {
-      //   path: '/notes/:grade/:subject',
-      //   element: <SubjectGradeNotes />
-      // },
-      // {
-      //   path: '/admin',
-      //   element: <AdminDashBoard />
-      // },
-      // {
-      //   path: '/admin/registerTeacher',
-      //   element: <RegisterTeacher />
-      // },
-      // {
-      //   path: '/admin/verifystudent',
-      //   element: <VerifyStudent />
-      // },
-      // {
-      //   path: '/admin/addnotes',
-      //   element: <AddNotes />
-      // },
-      // {
-      //   path: '/admin/addresult',
-      //   element: <AddResult />
-      // },
+      {
+        path: '/notes/:subjectName',
+        element: <SubjectNotes />
+      },
+      {
+        path: '/notes/:id',
+        element: <ChapterNotes />
+      },
+      {
+        path: '/admin',
+        element: <AdminDashBoard />
+      },
+      {
+        path: '/admin/register-teacher',
+        element: <RegisterTeacher />
+      },
+      {
+        path: '/admin/filter-students',
+        element: <FilterStudents />
+      },
+      {
+        path: '/admin/change-password',
+        element: <ChangePassword />
+      },
+      {
+        path: '/admin/add-result',
+        element: <AddResult />
+      },
       {
         path: '/class-chat',
         element: <ClassChat />
@@ -106,6 +112,10 @@ const router = createBrowserRouter([
       {
         path: '/universal-chat',
         element: <UniversalChat />
+      },
+      {
+        path:'/feedback',
+        element: <Feedback />
       }
     ]
   }

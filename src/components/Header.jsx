@@ -22,7 +22,7 @@ const Header = () => {
     const adminStatus = useSelector((state) => state.isAdmin)
     const user = useSelector((state) => state.user)
 
-    // console.table([authStatus, studentStatus, teacherStatus, adminStatus])
+    console.table([authStatus, studentStatus, teacherStatus, adminStatus])
 
     return (
         <nav className="border-gray-200 dark:bg-gray-900">
@@ -102,6 +102,13 @@ const Header = () => {
                             )
                         }
                         {
+                            authStatus && teacherStatus && (
+                                <li>
+                                    <Link to="/teacher-profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</Link>
+                                </li>
+                            )
+                        }
+                        {
                             !authStatus && (
                                 <li>
                                     <Link to="/login" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Login</Link>
@@ -116,16 +123,16 @@ const Header = () => {
                             )
                         }
                         {
-                            authStatus && (
+                            authStatus && teacherStatus && adminStatus && (
                                 <li>
-                                    <Link to="/logout" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</Link>
+                                    <Link to="/admin" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Admin</Link>
                                 </li>
                             )
                         }
                         {
-                            authStatus && teacherStatus && adminStatus && (
+                            authStatus && (
                                 <li>
-                                    <Link to="/admin" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Admin</Link>
+                                    <Link to="/logout" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</Link>
                                 </li>
                             )
                         }

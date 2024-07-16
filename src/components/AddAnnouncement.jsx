@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function AddAnnouncement() {
 
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
+
+    const token = useSelector(state => state.token)
 
     const navigate = useNavigate()
 
@@ -13,14 +16,13 @@ function AddAnnouncement() {
         const date = new Date()
         console.table([title, content, date])
         const announcement = {
-            announcer: '66866cffc48cdb0bb9fa352f',
             title: title,
             content: content,
             date: date.toLocaleDateString()
         }
         await fetch('http://localhost:5000/api/v1/announcement/add', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
             body: JSON.stringify(announcement)
         })
             .then(response => response.json())

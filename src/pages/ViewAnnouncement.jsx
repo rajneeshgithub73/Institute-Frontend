@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 function ViewAnnouncement() {
@@ -6,21 +8,33 @@ function ViewAnnouncement() {
     const { id } = useParams()
     const readURL = `http://localhost:5000/api/v1/announcement/read/${id}`
 
-    console.log(id)
+    // console.log(id)
+
+    const token = useSelector((state) => state.token)
+
+    // console.log("Token", token)
 
     useEffect(() => {
-        fetch(readURL, { method: 'GET', headers: { 'Content-type': 'application/json' } })
+        fetch(readURL, { method: 'GET', headers: { 'Content-type': 'application/json', 'Authorization': `Bearer ${token}` } })
             .then((response) => response.json())
-            .then((data) => setAnnouncement(data.announcement[0]))
-            .catch((error) => console.log(error.message))
+            .then((data) => {
+                console.log(data);
+                if(!data.success)
+                    throw new Error(data.message);
+                setAnnouncement(data.data[0]);
+            })
+            .catch((error) => {
+                console.log(error.message)
+                toast.error(error.message)
+            })
     }, [])
 
     return (
-        <div className="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
-            <h1 className="text-3xl font-bold mb-4">{announcement.title}</h1>
-            <div className="mb-4 text-gray-600">{announcement.date}</div>
-            <div className="mb-4 text-lg">{announcement.content}</div>
-            <div className="text-gray-700 mb-4">
+        <div className="max-w-2xl min-h-96 mx-auto p-4 bg-gray-800 shadow-md">
+            <h1 className="text-2xl text-gray-200 font-bold mb-4">{announcement.title}</h1>
+            <div className="mb-4 text-gray-100">{announcement.date}</div>
+            <div className="mb-4 text-gray-100 text-lg">{announcement.content}</div>
+            <div className="text-gray-300 mb-4">
                 <span className="font-semibold">Announcer: </span>{announcement.fullName}
             </div>
             <div className="flex space-x-4">

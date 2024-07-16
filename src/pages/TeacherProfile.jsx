@@ -1,7 +1,11 @@
+import { useSelector } from "react-redux";
+import Profile from "../components/Profile"
+
 function TeacherProfile() {
+    const userDetails = useSelector(state => state.user)
     return ( 
         <div>
-            this is teacher profile page
+            <Profile userDetails={userDetails} />
         </div>
      );
 }

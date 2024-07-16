@@ -6,15 +6,16 @@ import { useSelector } from "react-redux";
 function Announcement() {
 
   const teacherStatus = useSelector(state => state.isTeacher )
+  const token = useSelector(state => state.token)
 
   const [announcementList, setAnnouncementList] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/v1/announcement/get-list', { method: 'GET', headers: { 'Content-Type': 'application/json' } })
+    fetch('http://localhost:5000/api/v1/announcement/get-list', { method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } })
       .then(response => response.json())
       .then(data => {
-        console.log(data.announcement);
-        setAnnouncementList(data.announcement)
+        console.log(data.data);
+        setAnnouncementList(data.data)
       })
       .catch(error => error.message)
   }, [])
@@ -40,7 +41,6 @@ function Announcement() {
         </ul>
       </div>
     </div>
-
   )
 }
 

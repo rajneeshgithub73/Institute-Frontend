@@ -1,6 +1,6 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 function AddAnnouncement() {
 
@@ -9,12 +9,9 @@ function AddAnnouncement() {
 
     const token = useSelector(state => state.token)
 
-    const navigate = useNavigate()
-
     const addAnnouncement = async (e) => {
         e.preventDefault()
         const date = new Date()
-        console.table([title, content, date])
         const announcement = {
             title: title,
             content: content,
@@ -27,13 +24,14 @@ function AddAnnouncement() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Success:', data);
+                if(!data.success){
+                    throw new Error(data.message)
+                }
+                toast.success(data.message);
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
-        
-            navigate('/announcement')
     }
 
     return (

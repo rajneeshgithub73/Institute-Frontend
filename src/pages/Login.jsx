@@ -28,10 +28,7 @@ function Login() {
           body: JSON.stringify(student),
         }
       );
-
       const data = await response.json();
-
-      console.log(data);
 
       if (!data.success) {
         throw new Error(data.message);
@@ -49,7 +46,6 @@ function Login() {
       toast.success(data.message);
       navigate("/");
     } catch (error) {
-      console.log(error);
       toast.error(error.message);
     }
   };
@@ -62,8 +58,6 @@ function Login() {
       password: password,
     };
 
-    // console.log(teacher);
-
     try {
       const response = await fetch(
         "http://localhost:5000/api/v1/teacher/login",
@@ -73,9 +67,7 @@ function Login() {
           body: JSON.stringify(teacher),
         }
       );
-
       const data = await response.json();
-      console.log(data);
 
       if (!data.success) {
         throw new Error(data.message);
@@ -90,11 +82,9 @@ function Login() {
           token: data.data.accessToken,
         })
       );
-
       toast.success(data.message);
       navigate("/");
     } catch (error) {
-      console.log(error);
       toast.error(error.message);
     }
   };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import StudentCard from "../components/StudentCard";
+import StudentCard from "../../components/StudentCard";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 

@@ -1,15 +1,13 @@
 import { useSelector } from "react-redux";
-import Profile from "../components/Profile";
+import Profile from "../../components/Profile"
 
-
-function StudentProfile() {
+function TeacherProfile() {
     const userDetails = useSelector(state => state.user)
-
     return ( 
         <div>
-            <Profile userDetails={userDetails}/>
+            <Profile userDetails={userDetails} />
         </div>
      );
 }
 
-export default StudentProfile;
+export default TeacherProfile;

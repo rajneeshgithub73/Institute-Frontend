@@ -32,15 +32,13 @@ function AddGrade() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const teacherData = new FormData();
-        
-        teacherData.append("gradeValue", gradeValue);
-        subjectNames.forEach((subjectName) => teacherData.append("subjectNames", subjectName));
-
+        // const teacherData = new FormData();
+        // teacherData.append("gradeValue", gradeValue);
+        // subjectNames.forEach((subjectName) => teacherData.append("subjectNames", subjectName));
         // Log FormData content for debugging
-        for (let pair of teacherData.entries()) {
-            console.log(`${pair[0]}: ${pair[1]}`);
-        }
+        // for (let pair of teacherData.entries()) {
+        //     console.log(`${pair[0]}: ${pair[1]}`);
+        // }
 
         try {
             // throw new Error("hello")

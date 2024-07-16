@@ -4,8 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function StudentProfileUpdate() {
-
-    const studentDetails = useSelector(state => state.user)
+    const studentDetails = useSelector((state) => state.user);
 
     const [fullName, setFullName] = useState(studentDetails.fullName);
     const [fatherName, setFatherName] = useState(studentDetails.fatherName);
@@ -23,6 +22,7 @@ function StudentProfileUpdate() {
 
     const [subjects, setSubjects] = useState([]);
 
+    const token = useSelector((state) => state.token);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -59,12 +59,14 @@ function StudentProfileUpdate() {
         // formData.append("address", address);
         // formData.append("avatar", avatar);
         // formData.append("gradeValue", gradeValue);
-        subjectNames.forEach((subjectName) => formData.append("subjectNames", subjectName));
+        subjectNames.forEach((subjectName) =>
+            formData.append("subjectNames", subjectName)
+        );
 
         // Log FormData content for debugging
-        for (let pair of formData.entries()) {
-            console.log(`${pair[0]}: ${pair[1]}`);
-        }
+        // for (let pair of formData.entries()) {
+        //     console.log(`${pair[0]}: ${pair[1]}`);
+        // }
 
         try {
             // throw new Error("FormData")
@@ -72,7 +74,11 @@ function StudentProfileUpdate() {
                 "http://localhost:5000/api/v1/student/update",
                 {
                     method: "POST",
-                    body: formData,
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ oldPassword, newPassword, subjectNames }),
                 }
             );
             const data = await response.json();
@@ -326,10 +332,7 @@ function StudentProfileUpdate() {
                                     onChange={() => handleSubjectChange(subject)}
                                     className="mr-2"
                                 />
-                                <label
-                                    htmlFor={`subject-${subject}`}
-                                    className="text-gray-100"
-                                >
+                                <label htmlFor={`subject-${subject}`} className="text-gray-100">
                                     {subject}
                                 </label>
                             </div>

@@ -30,7 +30,7 @@ function AddAnnouncement() {
                 toast.success(data.message);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                toast.error(error.message);
             });
     }
 

@@ -10,7 +10,7 @@ function Announcement() {
   const [announcementList, setAnnouncementList] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/announcement/get-list", {
+    fetch("http://localhost:5000/api/v1/announcement/list", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

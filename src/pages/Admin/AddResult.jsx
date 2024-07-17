@@ -1,7 +1,7 @@
 function AddResult() {
     return ( 
         <div>
-            this is add result
+            Result section
         </div>
      );
 }

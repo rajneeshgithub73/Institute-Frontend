@@ -107,7 +107,7 @@ const Header = () => {
                                 Home
                             </Link>
                         </li>
-                        {authStatus && (
+                        {studentStatus && teacherStatus && (
                             <li>
                                 <Link
                                     to="/announcement"
@@ -127,10 +127,10 @@ const Header = () => {
                         </li>
                         <li>
                             <Link
-                                to="/result"
+                                to="/results"
                                 className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                             >
-                                Result
+                                Results
                             </Link>
                         </li>
                         <li>
@@ -149,6 +149,18 @@ const Header = () => {
                                 AllChat
                             </Link>
                         </li>
+                        {
+                            authStatus && (
+                                <li>
+                                    <Link
+                                        to="/feedback"
+                                        className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                                    >
+                                        Feedback
+                                    </Link>
+                                </li>
+                            )
+                        }
                     </ul>
                 </div>
             </div>
@@ -209,7 +221,7 @@ const Header = () => {
                                 </Link>
                             </li>
                         )}
-                        {authStatus && teacherStatus && adminStatus && (
+                        {adminStatus && (
                             <li>
                                 <Link
                                     to="/admin"

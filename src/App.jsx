@@ -2,7 +2,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import Home from "./pages/Home.jsx";
+import Home from "./pages/Home/Home.jsx";
 import Register from "./pages/Student/Register.jsx";
 import Login from "./pages/Login.jsx";
 import Announcement from "./pages/Announcement/Announcement.jsx";
@@ -18,11 +18,12 @@ import FilterStudents from "./pages/Admin/FilterStudents.jsx";
 import AddResult from "./pages/Admin/AddResult.jsx";
 import StudentProfileUpdate from "./pages/Student/StudentProfileUpdate.jsx";
 import TeacherProfileUpdate from "./pages/Teacher/TeacherProfileUpdate.jsx";
-import Feedback from "./components/FeedBack.jsx";
+import FeedBack from "./components/FeedBack.jsx";
 import SubjectNotes from "./pages/Notes/SubjectNotes.jsx";
 import ViewNotes from "./pages/Notes/ViewNotes.jsx";
 import ChangePassword from "./pages/Admin/ChangePassword.jsx";
 import { useSelector } from "react-redux";
+import Results from "./pages/Results/Results.jsx";
 
 function App() {
   const authStatus = useSelector((state) => state.status);
@@ -94,6 +95,7 @@ function App() {
             path="/notes/:id"
             element={authStatus ? <ViewNotes /> : <Navigate to={"/login"} />}
           />
+          <Route path="/results" element={<Results />} />
           <Route
             path="/admin"
             element={
@@ -126,7 +128,7 @@ function App() {
           <Route path="/universal-chat" element={<UniversalChat />} />
           <Route
             path="/feedback"
-            element={authStatus ? <Feedback /> : <Navigate to={"/login"} />}
+            element={authStatus ? <FeedBack /> : <Navigate to={"/login"} />}
           />
         </Routes>
       </div>

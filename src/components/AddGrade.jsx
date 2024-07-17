@@ -14,7 +14,6 @@ function AddGrade() {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data.data);
                 setSubjects(data.data)
             });
     }, []);
@@ -41,7 +40,6 @@ function AddGrade() {
         // }
 
         try {
-            // throw new Error("hello")
             const response = await fetch(
                 "http://localhost:5000/api/v1/grade/add",
                 {
@@ -66,7 +64,6 @@ function AddGrade() {
                 Add Grade
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
-
             <div>
                     <label
                         htmlFor="grade"
@@ -91,7 +88,6 @@ function AddGrade() {
                         <option value={12}>12th Grade</option>
                     </select>
                 </div>
-                
                 <div>
                     <label className="block text-sm font-medium text-gray-100">
                         Subjects
